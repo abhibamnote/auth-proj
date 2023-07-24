@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password</title>
+</head>
+<body>
+    <div id="forgot-pass" class="forgot-pass">
+        <input type="text" id="email" placeholder="email">
+        
+        <button onclick="postIt()">Submit</button>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    const postIt = () =>{
+        const email = document.getElementById('email').value;
+
+
+        axios.post('/auth/forgot-password', {
+            email: email
+        })
+            .then(function (response) {
+                updateForm(email);
+
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
+    const updateForm = (email) =>{
+        var formHTML = `
+            <input type="text" style="diplay: none;" value = "${email}" id="email" placeholder="email">
+            <br>
+            <input type="text" id="passOne" placeholder="password">
+            <br>
+            <input type="text" id="otp" placeholder="otp">
+            <button onclick="postOTP()">Submit</button>
+            
+        `;
+
+        document.getElementById('forgot-pass').innerHTML = formHTML;
+    }
+
+    const postOTP = () =>{
+        const email = document.getElementById('email').value;
+        const otp = document.getElementById('otp').value;
+        const password = document.getElementById('passOne').value;
+
+
+        axios.post('/auth/forgot-password/otp',{
+            email: email,
+            otp: otp,
+            password: password
+        })
+        .then((response)=>{
+            console.log(response);
+
+        })
+        .catch((error)=>{
+            console.log(error);
+        })
+    }
+</script>
+</html>

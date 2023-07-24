@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success</title>
+</head>
+<body>
+    <a href="/secretpage">secret</a>
+    
+</body>
+
+<script>
+    const setToken = async () =>{
+        await localStorage.setItem("token", window.location.pathname.split('/')[3]);
+    }
+
+    setToken();
+</script>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+
+<body>
+    <input id="email" type="email">
+    <input id="password" type="text">
+
+    <button onclick="postIt()">Submit</button>
+
+    <a href="/auth/login-google">Google login</a>
+
+    <div id="some">
+
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+</html>
+
+<script>
+    const postIt = () =>{
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+
+        axios.post('/auth/user/login', {
+            email: email,
+            password: password
+        })
+            .then(function (response) {
+                console.log(response);
+                document.getElementById('some').innerText = response.data.token;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+</script>
