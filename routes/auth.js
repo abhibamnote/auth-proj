@@ -66,9 +66,13 @@ router.get('/login-success/:token', (req, res)=>{
     res.status(200).render('success');
 })
 
-router.get('/secret', passport.authenticate("jwt", { session: false }), (req, res) =>{
+router.get('/secret', (req, res)=>{
+    res.render('secret');
+})
+
+router.get('/secret-api', passport.authenticate("jwt", { session: false }), (req, res) =>{
     res.status(200).json({
-        message: "Hello"
+        message: "The secret is displayed here."
     });
 })
 

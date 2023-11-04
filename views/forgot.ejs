@@ -1,21 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forgot Password</title>
+<!doctype html>
+<html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, intial-scale=1">
+<title>Custom Coding</title>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/style.css">
+
 </head>
+
 <body>
-    <div id="forgot-pass" class="forgot-pass">
-        <input type="text" id="email" placeholder="email">
-        
-        <button onclick="postIt()">Submit</button>
-    </div>
+    <header>
+        <h2 href="#">Auth-Project</h2>
+        <nav>
+            <li><a href="/">Main</a> </li>
+            <li><a href="/auth/user/login">Login</a> </li>
+            <li><a href="/auth/user/signup">Signup</a> </li>
+            <li><a href="/auth/forgot-password">Forgot Password</a> </li>
+            <li><a href="/auth/secret">Protected Route</a> </li>
+
+
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="background-image"
+            style="background-image: url(https://wallpaper-house.com/data/out/7/wallpaper2you_139824.jpg)"></div>
+        <div class="hero-content-area">
+            <h1>Login</h1>
+            <div id="forgot-pass" class="login-div">
+                <input type="text" id="email" placeholder="email">
+
+                <button onclick="postIt()">Submit</button>
+            </div>
+        </div>
+
+    </section>
+
+    <footer>
+        <ul>
+            <li><a href="#"><i class="fa fa-twitter-square"></i></a></li>
+            <li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
+            <li><a href="#"><i class="fa fa-snapchat-square"></i></a></li>
+            <li><a href="#"><i class="fa fa-pinterest-square"></i></a></li>
+            <li><a href="#"><i class="fa fa-github-square"></i></a></li>
+        </ul>
+    </footer>
+
 </body>
+
+</html>
+
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-    const postIt = () =>{
+    const postIt = () => {
         const email = document.getElementById('email').value;
 
 
@@ -27,15 +66,17 @@
 
             })
             .catch(function (error) {
+                alert(error.response.data.message)
+
                 console.log(error);
             });
     }
 
-    const updateForm = (email) =>{
+    const updateForm = (email) => {
         var formHTML = `
             <input type="text" style="diplay: none;" value = "${email}" id="email" placeholder="email">
             <br>
-            <input type="text" id="passOne" placeholder="password">
+            <input type="password" id="passOne" placeholder="New Password">
             <br>
             <input type="text" id="otp" placeholder="otp">
             <button onclick="postOTP()">Submit</button>
@@ -45,24 +86,24 @@
         document.getElementById('forgot-pass').innerHTML = formHTML;
     }
 
-    const postOTP = () =>{
+    const postOTP = () => {
         const email = document.getElementById('email').value;
         const otp = document.getElementById('otp').value;
         const password = document.getElementById('passOne').value;
 
 
-        axios.post('/auth/forgot-password/otp',{
+        axios.post('/auth/forgot-password/otp', {
             email: email,
             otp: otp,
             password: password
         })
-        .then((response)=>{
-            console.log(response);
-
-        })
-        .catch((error)=>{
-            console.log(error);
-        })
+            .then((response) => {
+                console.log(response);
+                window.location.href="/auth/login";
+            })
+            .catch((error) => {
+                alert(error.response.data.message)
+                console.log(error);
+            })
     }
 </script>
-</html>

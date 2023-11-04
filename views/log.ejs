@@ -1,34 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, intial-scale=1">
+<title>Custom Coding</title>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/style.css">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
 </head>
 
 <body>
-    <input id="email" type="email">
-    <input id="password" type="text">
+    <header>
+        <h2 href="#">Auth-Project</h2>
+        <nav>
+            <li><a href="/">Main</a> </li>
+            <li><a href="/auth/user/login">Login</a> </li>
+            <li><a href="/auth/user/signup">Signup</a> </li>
+            <li><a href="/auth/forgot-password">Forgot Password</a> </li>
+            <li><a href="/auth/secret">Protected Route</a> </li>
 
-    <button onclick="postIt()">Submit</button>
 
-    <a href="/auth/login-google">Google login</a>
+        </nav>
+    </header>
 
-    <div id="some">
+    <section class="hero">
+        <div class="background-image"
+            style="background-image: url(https://wallpaper-house.com/data/out/7/wallpaper2you_139824.jpg)"></div>
+        <div class="hero-content-area">
+            <h1>Login</h1>
+            <div class="login-div">
+                <input id="email" type="email" placeholder="Email">
+                <input id="password" type="password" placeholder="Password">
+    
+                <button onclick="postIt()">Submit</button>
+    
+                <a href="/auth/login-google">Google login</a>
+            </div>
+        </div>
 
-    </div>
+    </section>
+
+    <footer>
+        <ul>
+            <li><a href="#"><i class="fa fa-twitter-square"></i></a></li>
+            <li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
+            <li><a href="#"><i class="fa fa-snapchat-square"></i></a></li>
+            <li><a href="#"><i class="fa fa-pinterest-square"></i></a></li>
+            <li><a href="#"><i class="fa fa-github-square"></i></a></li>
+        </ul>
+    </footer>
+
 </body>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 </html>
 
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-    const postIt = () =>{
+    const postIt = () => {
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
-
 
         axios.post('/auth/user/login', {
             email: email,
@@ -36,10 +67,14 @@
         })
             .then(function (response) {
                 console.log(response);
-                document.getElementById('some').innerText = response.data.token;
+                localStorage.setItem("token", response.data.token);
+                window.location.href="/auth/secret";
+                
             })
             .catch(function (error) {
+                alert(error.response.data.message)
                 console.log(error);
+                
             });
     }
 </script>

@@ -7,13 +7,13 @@
     <title>Success</title>
 </head>
 <body>
-    <a href="/secretpage">secret</a>
     
 </body>
 
 <script>
     const setToken = async () =>{
-        await localStorage.setItem("token", window.location.pathname.split('/')[3]);
+        await localStorage.setItem("token", `Bearer ${window.location.pathname.split('/')[3]}`);
+        window.location.href="/auth/secret";
     }
 
     setToken();

@@ -1,72 +1,69 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, intial-scale=1">
+<title>Custom Coding</title>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/style.css">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Dekho</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/styletwo.css">
 </head>
 
 <body>
-
     <header>
-        <section>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12 headline">
-                        <div class="logo">
-                            Website-Dekho
-                        </div>
+        <h2 href="#">Auth-Project</h2>
+        <nav>
+            <li><a href="/">Main</a> </li>
+            <li><a href="/auth/user/login">Login</a> </li>
+            <li><a href="/auth/user/signup">Signup</a> </li>
+            <li><a href="/auth/forgot-password">Forgot Password</a> </li>
+            <li><a href="/auth/secret">Protected Route</a> </li>
 
-                        <div class="cross">X</div>
-                    </div>
-                </div>
-            </div>
-        </section>
+
+        </nav>
     </header>
 
-    <section>
-        <div class="container headings">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1>Sign Up</h1>
-                    <h5>Already have an account? <a href="">Log In</a></h5>
-                </div>
+    <section class="hero">
+        <div class="background-image"
+            style="background-image: url(https://wallpaper-house.com/data/out/7/wallpaper2you_139824.jpg)"></div>
+        <div class="hero-content-area">
+            <h1>Sign Up</h1>
+            <div class="login-div">
+                <input type="email" placeholder="Email" name="email" id="email">
+                <input type="password" placeholder="Password" name="password" id="password">
+                <input type="password" placeholder="Type your password again" name="passwordConf">
+    
+
+                <button onclick="postIt()">Submit</button>
+
+                <a href="/auth/login-google">Continue With Google</a>
+            </div>
+            <div class="col-md-6 form-dets">
+                
+            </div>
+
+            <div class="col-md-6 form-btns">
             </div>
         </div>
+
     </section>
 
-    <section>
-        <div class="container signup-form">
-            <div class="row">
-                <div class="col-md-6 form-dets">
-                    <input type="email" placeholder="Email" name="email" id="email">
-                    <input type="password" placeholder="Password" name="password" id="password">
-                    <input type="password" placeholder="Type your password again" name="passwordConf">
-                </div>
+    <footer>
+        <ul>
+            <li><a href="#"><i class="fa fa-twitter-square"></i></a></li>
+            <li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
+            <li><a href="#"><i class="fa fa-snapchat-square"></i></a></li>
+            <li><a href="#"><i class="fa fa-pinterest-square"></i></a></li>
+            <li><a href="#"><i class="fa fa-github-square"></i></a></li>
+        </ul>
+    </footer>
 
-                <div class="col-md-6 form-btns">
-                    <button > <a href="/auth/login-google">Continue with Google</a></button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- <input id="email" type="email">
-    <input id="password" type="text">
-
-    <button onclick="postIt()">Submit</button> -->
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 </html>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 <script>
     const postIt = () => {
@@ -80,8 +77,10 @@
         })
             .then(function (response) {
                 console.log(response);
+                window.location.href = "/auth/login"
             })
             .catch(function (error) {
+                alert(error.response.data.message)
                 console.log(error);
             });
     }

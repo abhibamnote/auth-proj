@@ -18,7 +18,7 @@ router.get('/sendMail', async (req, res)=>{
 
 router.get('/', (req, res)=>{
 
-    res.send("Hello");
+    res.render("index");
 })
 
 
