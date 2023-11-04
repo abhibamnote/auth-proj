@@ -39,7 +39,7 @@ router.post('/user/login', async (req, res)=>{
 router.get('/login-google',  passport.authenticate("google", { scope: ['profile', 'email'] }))
 
 router.get('/google/cb',  passport.authenticate("google", {
-    failureRedirect:`/auth/login`,
+    failureRedirect:`/auth/user/login`,
    }), (req, res) => {
 
     const generateToken = (user_id, role, email) => {
