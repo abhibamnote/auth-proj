@@ -5,13 +5,13 @@ Technologies used in this project are:
 3. Express
 4. JWT
 
-Environment variables:
+#Environment variables:
 
-MONGO_URI
-SessionSec
-JWT_SEC
-Google_client
-Google_client_secret
-Email_Host
-Email_ID
-Email_Pass
+MONGO_URI= <br>
+SessionSec= <br>
+JWT_SEC= <br>
+Google_client= <br>
+Google_client_secret= <br>
+Email_Host= <br>
+Email_ID= <br>
+Email_Pass= <br>
