@@ -1,0 +1,25 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js environment
+      uses: actions/setup-node@v2
+      with:
+        node-version: '20'  # Specify the Node.js version you want to use
+
+    - name: Install Dependencies
+      run: |
+        npm install  # or 'yarn install' if you are using yarn
+
